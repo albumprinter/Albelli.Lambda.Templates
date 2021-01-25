@@ -95,6 +95,19 @@ Target.create "Build" (fun _ ->
             }
           )
         )
+
+
+    !! "src/*.*proj"
+    |> Seq.iter(
+        DotNet.pack
+          (fun p -> 
+            { p with 
+               Configuration = DotNet.BuildConfiguration.Release
+               OutputPath    = Some ScriptVars.artifacts
+               NoBuild       = true
+            }
+          )
+        )
 )
 
 Target.create "All" ignore
