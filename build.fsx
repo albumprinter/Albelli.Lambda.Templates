@@ -5,6 +5,7 @@ nuget Fake.Core.Target
 nuget Fake.Tools.GitVersion 
 nuget FSharp.Core 4.7.0
 nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.Core.Xml
 
 github albumprinter/Fake.Extra
  //"
@@ -53,6 +54,27 @@ Target.create "SetVersion" (fun _ ->
          AssemblyInfo.Company "Albelli"
          AssemblyInfo.Copyright "Albelli"
          AssemblyInfo.ComVisible false]
+
+    // workaround for nuget publish, which doesn't
+    // care whether the version is already set for the dll
+    let searchPattern = "<Version>(.+?)<\/Version>"
+    let newVersionTag = sprintf "<Version>%s</Version>" gitVersion.NuGetVersionV2
+
+    let projVersionPath = "/*[local-name()='Project']/*[local-name()='PropertyGroup']/*[local-name()='Version']/text()"
+
+    !! "./src/**/*.*proj"
+    |> Seq.iter (fun proj -> 
+        version
+        |> Xml.poke proj projVersionPath
+        )
+    // !! "./src/**/*.*proj"
+    // |> RegexReplaceInFilesWithEncoding searchPattern newVersionTag System.Text.Encoding.UTF8
+
+    
+    
+
+    version
+    |> Xml.poke "./src/Template.nuspec" "/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']/text()"
 )
 
 Target.create "Clean" (fun _ ->
