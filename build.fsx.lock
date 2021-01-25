@@ -97,6 +97,12 @@ NUGET
       Fake.Core.Trace (>= 5.19.1)
       FSharp.Core (>= 4.7)
       System.Net.Http (>= 4.3.4)
+    Fake.Tools.GitVersion (5.19.1)
+      Fake.Core.Environment (>= 5.19.1)
+      Fake.Core.Process (>= 5.19.1)
+      Fake.IO.FileSystem (>= 5.19.1)
+      FSharp.Core (>= 4.7)
+      Newtonsoft.Json (>= 12.0.3)
     FParsec (1.1.1)
       FSharp.Core (>= 4.3.4)
     FSharp.Control.Reactive (4.4)
@@ -635,3 +641,6 @@ NUGET
       System.Xml.ReaderWriter (>= 4.3)
       System.Xml.XmlDocument (>= 4.3)
       System.Xml.XPath (>= 4.3)
+GITHUB
+  remote: albumprinter/Fake.Extra
+    FULLPROJECT (aa03cdf9a40f4ccea00597085f15034d2fed26ee)
