@@ -1,0 +1,35 @@
+{
+  "author": "Albelli",
+  "classifications": [ "SNS", "Lambda", "Core" ],
+  "name": "Lambda that's subscribed to SNS topic",
+  "identity": "Albelli.Templates.Amazon.Lambda.SNSEvents",
+  "shortName": "albelli-amazon-lambda-sns-events",
+  "guids": [ "509E4FE9-6FA2-46A5-85CF-32D139844252", "A69BD9A0-857C-4946-826E-55EB1B07D3A4" ],
+  "sourceName": "Albelli.LambdaSubscriptionTemplate",
+  "tags": {
+    "language": "C#"
+  },
+  "sources": [
+    {
+      "source": "./src/",
+      "target": "./src/",
+	  "exclude": [ "**/[Bb]in/**", "**/[Oo]bj/**", "**/[Pp]roperties/**", "**/*.filelist", "**/*.user", "**/*.lock.json" ]
+    },
+	{
+	  "source": "./",
+	  "target": "./",
+	  "include": [ "*.*", ".paket/**" ]
+	}
+  ],
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        { "text": "Run 'dotnet restore'" }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}
