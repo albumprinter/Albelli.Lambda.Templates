@@ -34,7 +34,7 @@ open Albelli
 
         let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrNone
 
-        let nugetSource() = NuGet.galleryV3
+        let nugetSource() = NuGet.galleryV2
 
 Target.initEnvironment ()
 
