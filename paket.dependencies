@@ -1,6 +1,0 @@
-group Build
-  source https://nuget.org/api/v2
-  framework: <= net45
-
-  nuget FAKE
-  nuget GitVersion.CommandLine

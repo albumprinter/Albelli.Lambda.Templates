@@ -6,5 +6,6 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-"packages\build\FAKE\tools\Fake.exe" build.fsx %* "parallel-jobs=1"
+dotnet tool restore
+dotnet fake run build.fsx --parallel 1
 popd

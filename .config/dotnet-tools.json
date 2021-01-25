@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "fake-cli": {
+      "version": "5.20.3",
+      "commands": [
+        "fake"
+      ]
+    },
+    "gitversion.tool": {
+      "version": "5.6.4",
+      "commands": [
+        "dotnet-gitversion"
+      ]
+    }
+  }
+}
