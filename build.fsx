@@ -70,7 +70,7 @@ Target.create "SetVersion" (fun _ ->
         )
 
     version
-    |> Xml.poke "./template/Template.nuspec" "/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']/text()"
+    |> Xml.poke "./templates/templates.csproj" projVersionPath
 )
 
 Target.create "Clean" (fun _ ->

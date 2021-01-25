@@ -9,6 +9,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>.</ContentTargetFolders>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <Version>0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
