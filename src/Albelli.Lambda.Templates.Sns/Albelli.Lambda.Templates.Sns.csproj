@@ -13,7 +13,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <Version>0.0.1</Version>
   </PropertyGroup>
-   
+
   <ItemGroup>
     <Compile Include="..\..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
   </ItemGroup>
@@ -33,5 +33,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Albelli.Lambda.Templates.Core\Albelli.Lambda.Templates.Core.csproj" />
   </ItemGroup>
-  
+
 </Project>

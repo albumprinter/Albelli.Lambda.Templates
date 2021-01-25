@@ -16,7 +16,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <Version>0.0.1</Version>
   </PropertyGroup>
-   
+
   <ItemGroup>
     <Compile Include="..\..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
   </ItemGroup>
@@ -31,5 +31,5 @@
     </PackageReference>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.2.0" />
   </ItemGroup>
-  
+
 </Project>
