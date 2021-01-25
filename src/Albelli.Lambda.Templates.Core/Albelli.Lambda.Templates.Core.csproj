@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>Albelli.Lambda.Templates.Core</PackageId>
     <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp</PackageTags>
-    <Description>A structured template to create AWS Lambda in C#. It supports Logging, Dependency Injection and Configuration like ASP.NET Core projects do.</Description>
+    <Description>A structured template to create AWS Lambda in C#. It supports ASP.NET Core project pipeline, but can handle any AWS lambda input</Description>
     <AssemblyName>Albelli.Lambda.Templates.Core</AssemblyName>
     <RootNamespace>Albelli.Lambda.Templates.Core</RootNamespace>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

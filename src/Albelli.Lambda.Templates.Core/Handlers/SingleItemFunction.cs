@@ -17,26 +17,25 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Albelli.Lambda.Templates.Core
+namespace Albelli.Lambda.Templates.Core.Handlers
 {
-    public abstract class LambdaProxyFunction<TEntity, TCollection, TItem, TStartup> : PipelinedAspNetCoreFunction<TItem, StatusProxyResponse>
+    public abstract class SingleItemFunction<TEntity, TItem, TStartup> : PipelinedAspNetCoreFunction<TItem, StatusProxyResponse>
         where TStartup : class
     {
         private Action<IServiceCollection> _messageRouterConfigurator = s => s.AddSingleton<IMessageRouter, BodyTypeMessageRouter>();
         private IServiceProvider _serviceProvider;
 
-        protected LambdaProxyFunction()
+        protected SingleItemFunction()
         {
 
         }
 
-        protected LambdaProxyFunction(StartupMode startupMode)
+        protected SingleItemFunction(StartupMode startupMode)
             : base(startupMode)
         {
 
         }
 
-        protected abstract IEnumerable<TItem> GetItems(TCollection collection);
         protected abstract string GetJson(TItem item);
 
         protected void ConfigureMessageRouter<TMessageRouter>()
@@ -93,12 +92,7 @@ namespace Albelli.Lambda.Templates.Core
         }
 
         [UsedImplicitly]
-        public async Task FunctionHandlerAsync(TCollection collection, ILambdaContext lambdaContext)
-        {
-            await SnsEventExecutor.Execute(GetItems(collection), item => ExecuteItem(item, lambdaContext));
-        }
-
-        private async Task ExecuteItem(TItem item, ILambdaContext lambdaContext)
+        public new virtual async Task FunctionHandlerAsync(TItem item, ILambdaContext lambdaContext)
         {
             SnsRecordPipelineHandlers.Foreach(handler => handler.HookBefore(item, lambdaContext));
             var response = await base.FunctionHandlerAsync(item, lambdaContext);
