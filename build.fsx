@@ -4,7 +4,7 @@ nuget Fake.IO.FileSystem
 nuget Fake.Core.Target
 nuget Fake.Tools.GitVersion 
 nuget FSharp.Core 4.7.0
-
+nuget Fake.DotNet.AssemblyInfoFile
 
 github albumprinter/Fake.Extra
  //"
@@ -27,24 +27,42 @@ open Albelli
     module ScriptVars =
         let artifacts = "./artifacts" |> Path.GetFullPath
 
-        let version() = GitVersionTool.generateProperties().NuGetVersionV2
+        let version() = GitVersionTool.generateProperties()
 
         let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrFail
 
         let nugetSource() = "https://www.nuget.org/api/v2/package"
 
 
-
 Target.initEnvironment ()
 
 Target.create "Trace" (fun _ ->
     Trace.log "Hello world"
-    Trace.log <| ScriptVars.version()
+)
+
+Target.create "SetVersion" (fun _ ->
+    let gitVersion = ScriptVars.version()
+    let version = gitVersion.FullSemVer
+    
+    Trace.logfn "Gitversion is %s" version
+
+    AssemblyInfoFile.createCSharp "SharedAssemblyInfo.cs"
+        [AssemblyInfo.Version version
+         AssemblyInfo.FileVersion version
+         AssemblyInfo.InformationalVersion version
+         AssemblyInfo.Company "Albelli"
+         AssemblyInfo.Copyright "Albelli"
+         AssemblyInfo.ComVisible false]
 )
 
 Target.create "Clean" (fun _ ->
-    !! "src/**/bin"
-    ++ "src/**/obj"
+    !! ScriptVars.artifacts
+    ++ "src/*/bin"
+    ++ "tests/*/bin"
+    ++ "test/*/bin"
+    ++ "src/*/obj"
+    ++ "tests/*/obj"
+    ++ "test/*/obj"
     |> Shell.cleanDirs
 )
 
@@ -57,6 +75,7 @@ Target.create "All" ignore
 
 "Clean"
   ==> "Trace"
+  ==> "SetVersion"
   //==> "Build"
   ==> "All"
 
