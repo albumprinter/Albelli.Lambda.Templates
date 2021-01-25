@@ -67,11 +67,6 @@ Target.create "SetVersion" (fun _ ->
         version
         |> Xml.poke proj projVersionPath
         )
-    // !! "./src/**/*.*proj"
-    // |> RegexReplaceInFilesWithEncoding searchPattern newVersionTag System.Text.Encoding.UTF8
-
-    
-    
 
     version
     |> Xml.poke "./src/Template.nuspec" "/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']/text()"
@@ -96,7 +91,7 @@ Target.create "Build" (fun _ ->
 Target.create "All" ignore
 
 "Clean"
-  ==> "Trace"
+//   ==> "Trace"
   ==> "SetVersion"
   //==> "Build"
   ==> "All"
