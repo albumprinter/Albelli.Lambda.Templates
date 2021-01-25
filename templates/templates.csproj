@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackageId>cfrenzel-dotnet-new-templates-2.2</PackageId>
+    <Title>cfrenzel dotnet-new-templates</Title>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ConsoleApp\**" Exclude="ConsoleApp\SolutionName.sln;ConsoleApp\**\bin\**;ConsoleApp\**\obj\**;ConsoleApp\**\.vs\**" />
+    <Content Include="EFCore.MigrationProjects\**" Exclude="EFCore.MigrationProjects\**\bin\**;EFCore.MigrationProjects\**\obj\**;EFCore.MigrationProjects\**\.vs\**" />
+    <Content Include="Solution\**" Exclude="Solution\**\bin\**;Solution\**\obj\**;Solution\**\.vs\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
