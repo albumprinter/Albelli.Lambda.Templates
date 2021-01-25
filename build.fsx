@@ -112,10 +112,16 @@ Target.create "Build" (fun _ ->
 
 
 Target.create "Push" (fun _ ->
+    ScriptVars.nugetKey()
+    |> Option.map (TraceSecrets.register "<NuGetKey>")
+    |> ignore
+
     let setNugetPushParams (defaults:NuGet.NuGetPushParams) =
             { defaults with
                 DisableBuffering = true
-                ApiKey = ScriptVars.nugetKey()
+                ApiKey           = ScriptVars.nugetKey()
+                Source           = Some <| ScriptVars.nugetSource()
+
              }
     let setParams (defaults:DotNet.NuGetPushOptions) =
             { defaults with
