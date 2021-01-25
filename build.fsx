@@ -32,7 +32,7 @@ open Albelli
 
         let version() = GitVersionTool.generateProperties()
 
-        let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrFail
+        let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrNone
 
         let nugetSource() = NuGet.galleryV3
 
@@ -108,6 +108,22 @@ Target.create "Build" (fun _ ->
             }
           )
         )
+)
+
+
+Target.create "Push" (fun _ ->
+    let setNugetPushParams (defaults:NuGet.NuGetPushParams) =
+            { defaults with
+                DisableBuffering = true
+                ApiKey = ScriptVars.nugetKey()
+             }
+    let setParams (defaults:DotNet.NuGetPushOptions) =
+            { defaults with
+                PushParams = setNugetPushParams defaults.PushParams
+             }
+
+    !! (ScriptVars.artifacts + "/**/*.nupkg")
+    |> Seq.iter (DotNet.nugetPush setParams)
 )
 
 Target.create "All" ignore

@@ -1,6 +1,6 @@
 image: Visual Studio 2019
 build_script:
-  - cmd: build.cmd PushNuget
+  - cmd: build.cmd Push
 test: off
 skip_branch_with_pr: true
 nuget:
