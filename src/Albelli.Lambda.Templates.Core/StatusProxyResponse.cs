@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Albelli.Lambda.Templates.Sns
+namespace Albelli.Lambda.Templates.Core
 {
     public class StatusProxyResponse
     {

@@ -10,21 +10,24 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Albelli.Lambda.Templates.Sns
+namespace Albelli.Lambda.Templates.Core.Routing
 {
-    public class SnsMessageRouter
+    /// <summary>
+    /// Finds action which has parameter of mapped type with [FromBody] attribute
+    /// </summary>
+    public class BodyTypeMessageRouter : IMessageRouter
     {
         private readonly Dictionary<Type, string> _entityToPathCustomMap = new Dictionary<Type, string>();
         private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
         private readonly Lazy<Dictionary<Type, string>> _lazyAutoMapping;
 
-        public SnsMessageRouter(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
+        public BodyTypeMessageRouter(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _lazyAutoMapping = new Lazy<Dictionary<Type, string>>(GenerateAutoMapping, LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
-        public SnsMessageRouter AddMapping<TEntity>(string path)
+        public IMessageRouter AddMapping<TEntity>(string path)
         {
             _entityToPathCustomMap.TryAdd(typeof(TEntity), path);
             return this;

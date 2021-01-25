@@ -12,28 +12,27 @@ using Albelli.Lambda.Templates.Core.Routing;
 using Amazon.Lambda.AspNetCoreServer;
 using Amazon.Lambda.AspNetCoreServer.Internal;
 using Amazon.Lambda.Core;
-using Amazon.Lambda.SNSEvents;
+using Amazon.Lambda.SQSEvents;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Albelli.Lambda.Templates.Sns
+namespace Albelli.Lambda.Templates.Sqs
 {
-    public abstract class SnsProxyFunction<TEntity, TStartup> : PipelinedAspNetCoreFunction<SNSEvent.SNSRecord, StatusProxyResponse>
+    public abstract class SqsProxyFunction<TEntity, TStartup> : PipelinedAspNetCoreFunction<SQSEvent.SQSMessage, StatusProxyResponse>
         where TStartup : class
     {
         private Action<IServiceCollection> _messageRouterConfigurator = s => s.AddSingleton<IMessageRouter, BodyTypeMessageRouter>();
         private IServiceProvider _serviceProvider;
 
-        protected SnsProxyFunction()
-            : base()
+        protected SqsProxyFunction()
         {
 
         }
 
-        protected SnsProxyFunction(StartupMode startupMode)
+        protected SqsProxyFunction(StartupMode startupMode)
             : base(startupMode)
         {
 
@@ -56,7 +55,7 @@ namespace Albelli.Lambda.Templates.Sns
             _serviceProvider = webHost.Services;
         }
 
-        protected override void MarshallRequest(InvokeFeatures features, SNSEvent.SNSRecord snsRecord, ILambdaContext lambdaContext)
+        protected override void MarshallRequest(InvokeFeatures features, SQSEvent.SQSMessage message, ILambdaContext lambdaContext)
         {
             var requestFeatures = (IHttpRequestFeature)features;
             requestFeatures.Scheme = "https";
@@ -70,7 +69,7 @@ namespace Albelli.Lambda.Templates.Sns
 
             requestFeatures.Headers["Content-Type"] = "application/json; charset=utf-8";
 
-            requestFeatures.Body = new MemoryStream(Encoding.UTF8.GetBytes(snsRecord.Sns.Message));
+            requestFeatures.Body = new MemoryStream(Encoding.UTF8.GetBytes(message.Body));
 
             const string contentLengthHeaderName = "Content-Length";
             if (!requestFeatures.Headers.ContainsKey(contentLengthHeaderName))
@@ -78,7 +77,7 @@ namespace Albelli.Lambda.Templates.Sns
                 requestFeatures.Headers[contentLengthHeaderName] = requestFeatures.Body.Length.ToString(CultureInfo.InvariantCulture);
             }
 
-            PostMarshallRequestFeature(requestFeatures, snsRecord, lambdaContext);
+            PostMarshallRequestFeature(requestFeatures, message, lambdaContext);
         }
 
         protected override StatusProxyResponse MarshallResponse(IHttpResponseFeature responseFeatures, ILambdaContext lambdaContext, int statusCodeIfNotSet = 200)
@@ -93,31 +92,31 @@ namespace Albelli.Lambda.Templates.Sns
         }
 
         [UsedImplicitly]
-        public async Task FunctionHandlerAsync(SNSEvent snsEvent, ILambdaContext lambdaContext)
+        public async Task FunctionHandlerAsync(SQSEvent @event, ILambdaContext lambdaContext)
         {
-            await SnsEventExecutor.Execute(snsEvent.Records, record => ExecuteRecord(record, lambdaContext));
+            await SqsEventExecutor.Execute(@event.Records, record => ExecuteRecord(record, lambdaContext));
         }
 
-        private async Task ExecuteRecord(SNSEvent.SNSRecord snsRecord, ILambdaContext lambdaContext)
+        private async Task ExecuteRecord(SQSEvent.SQSMessage message, ILambdaContext lambdaContext)
         {
-            SnsRecordPipelineHandlers.Foreach(handler => handler.HookBefore(snsRecord, lambdaContext));
-            var response = await base.FunctionHandlerAsync(snsRecord, lambdaContext);
-            SnsRecordPipelineHandlers.ForeachReverse(handler => handler.HookAfter(snsRecord, lambdaContext));
+            SqsRecordPipelineHandlers.Foreach(handler => handler.HookBefore(message, lambdaContext));
+            var response = await base.FunctionHandlerAsync(message, lambdaContext);
+            SqsRecordPipelineHandlers.ForeachReverse(handler => handler.HookAfter(message, lambdaContext));
 
-            lambdaContext.Logger.Log($"SNS record {snsRecord.Sns.MessageId} handled with status: {response.StatusCode}");
+            lambdaContext.Logger.Log($"SQS message {message.MessageId} handled with status: {response.StatusCode}");
         }
 
-        public List<ISnsRecordPipelineHandler> SnsRecordPipelineHandlers { get; } = new List<ISnsRecordPipelineHandler>();
-        public ICollectionExecutor SnsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();
+        public List<ISqsMessagePipelineHandler> SqsRecordPipelineHandlers { get; } = new List<ISqsMessagePipelineHandler>();
+        public ICollectionExecutor SqsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();
 
         public void ChooseSequentialExecutionMode()
         {
-            SnsEventExecutor = new SequentialCollectionExecutor();
+            SqsEventExecutor = new SequentialCollectionExecutor();
         }
 
         public void ChooseConcurrentExecutionMode(int batchSize)
         {
-            SnsEventExecutor = new ConcurrentCollectionExecutor(batchSize);
+            SqsEventExecutor = new ConcurrentCollectionExecutor(batchSize);
         }
     }
 }
