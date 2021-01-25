@@ -649,4 +649,4 @@ NUGET
       System.Xml.XPath (>= 4.3)
 GITHUB
   remote: albumprinter/Fake.Extra
-    FULLPROJECT (aa03cdf9a40f4ccea00597085f15034d2fed26ee)
+    FULLPROJECT (32db314b0f9a2528eccb31811bec84c13d8a6d7c)
