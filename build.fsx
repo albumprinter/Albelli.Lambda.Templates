@@ -113,8 +113,7 @@ Target.create "Build" (fun _ ->
 
 Target.create "Push" (fun _ ->
     ScriptVars.nugetKey()
-    |> Option.map (TraceSecrets.register "<NuGetKey>")
-    |> ignore
+    |> Option.iter (TraceSecrets.register "<NuGetKey>")
 
     let setNugetPushParams (defaults:NuGet.NuGetPushParams) =
             { defaults with
