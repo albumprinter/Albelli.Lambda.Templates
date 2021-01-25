@@ -126,12 +126,10 @@ Target.create "Push" (fun _ ->
     |> Seq.iter (DotNet.nugetPush setParams)
 )
 
-Target.create "All" ignore
-
 "Clean"
   ==> "Trace"
   ==> "SetVersion"
   ==> "Build"
-  ==> "All"
+  ==> "Push"
 
-Target.runOrDefault "All"
+Target.runOrDefaultWithArguments "Build"
