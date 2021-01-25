@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>Albelli.Lambda.Templates.Sns</PackageId>
+    <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp;sqs</PackageTags>
+    <Description>Extension to Albelli.Lambda.Templates.Core to better support AWS Lambda functions that respond to SQS messages.</Description>
     <AssemblyName>Albelli.Lambda.Templates.Sns</AssemblyName>
     <RootNamespace>Albelli.Lambda.Templates.Sns</RootNamespace>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>

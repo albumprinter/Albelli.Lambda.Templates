@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Albelli.Lambda.Templates.Core.Executors;
 using Amazon.Lambda.Core;
 using JetBrains.Annotations;
 
@@ -14,6 +15,18 @@ namespace Albelli.Lambda.Templates.Core.Handlers
         public async Task FunctionHandlerAsync(TCollection collection, ILambdaContext lambdaContext)
         {
             await SnsEventExecutor.Execute(GetItems(collection), item => FunctionHandlerAsync(item, lambdaContext));
+        }
+
+        public ICollectionExecutor SnsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();
+
+        public void ChooseSequentialExecutionMode()
+        {
+            SnsEventExecutor = new SequentialCollectionExecutor();
+        }
+
+        public void ChooseConcurrentExecutionMode(int batchSize)
+        {
+            SnsEventExecutor = new ConcurrentCollectionExecutor(batchSize);
         }
     }
 }

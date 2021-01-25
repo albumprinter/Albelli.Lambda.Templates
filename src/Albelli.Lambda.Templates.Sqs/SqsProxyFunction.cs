@@ -7,6 +7,6 @@ namespace Albelli.Lambda.Templates.Sqs
     public class SqsProxyFunction<TEntity, TStartup> : CollectionInputFunction<TEntity, SQSEvent, SQSEvent.SQSMessage, TStartup> where TStartup : class
     {
         protected override IEnumerable<SQSEvent.SQSMessage> GetItems(SQSEvent collection) => collection.Records;
-        protected override string GetJson(SQSEvent.SQSMessage item) => item.Body;
+        protected override string GetEntityJson(SQSEvent.SQSMessage item) => item.Body;
     }
 }

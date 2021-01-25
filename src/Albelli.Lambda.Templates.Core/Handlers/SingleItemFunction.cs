@@ -5,7 +5,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Albelli.Lambda.Templates.Core.Executors;
 using Albelli.Lambda.Templates.Core.Pipelines;
 using Albelli.Lambda.Templates.Core.Routing;
 using Amazon.Lambda.AspNetCoreServer;
@@ -36,7 +35,7 @@ namespace Albelli.Lambda.Templates.Core.Handlers
 
         }
 
-        protected abstract string GetJson(TItem item);
+        protected abstract string GetEntityJson(TItem item);
 
         protected void ConfigureMessageRouter<TMessageRouter>()
         where TMessageRouter : class, IMessageRouter
@@ -69,7 +68,7 @@ namespace Albelli.Lambda.Templates.Core.Handlers
 
             requestFeatures.Headers["Content-Type"] = "application/json; charset=utf-8";
 
-            requestFeatures.Body = new MemoryStream(Encoding.UTF8.GetBytes(GetJson(item)));
+            requestFeatures.Body = new MemoryStream(Encoding.UTF8.GetBytes(GetEntityJson(item)));
 
             const string contentLengthHeaderName = "Content-Length";
             if (!requestFeatures.Headers.ContainsKey(contentLengthHeaderName))
@@ -102,16 +101,5 @@ namespace Albelli.Lambda.Templates.Core.Handlers
         }
 
         public List<IPipelineHandler<TItem>> SnsRecordPipelineHandlers { get; } = new List<IPipelineHandler<TItem>>();
-        public ICollectionExecutor SnsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();
-
-        public void ChooseSequentialExecutionMode()
-        {
-            SnsEventExecutor = new SequentialCollectionExecutor();
-        }
-
-        public void ChooseConcurrentExecutionMode(int batchSize)
-        {
-            SnsEventExecutor = new ConcurrentCollectionExecutor(batchSize);
-        }
     }
 }
