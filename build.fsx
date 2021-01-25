@@ -2,10 +2,11 @@
 nuget Fake.DotNet.Cli
 nuget Fake.IO.FileSystem
 nuget Fake.Core.Target
-nuget Fake.Tools.GitVersion 
+nuget Fake.Tools.GitVersion
 nuget FSharp.Core 4.7.0
 nuget Fake.DotNet.AssemblyInfoFile
 nuget Fake.Core.Xml
+nuget Fake.DotNet.NuGet
 
 github albumprinter/Fake.Extra
  //"
@@ -15,6 +16,7 @@ github albumprinter/Fake.Extra
 open System.IO
 open Fake.Core
 open Fake.DotNet
+open Fake.DotNet.NuGet
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
@@ -32,8 +34,7 @@ open Albelli
 
         let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrFail
 
-        let nugetSource() = "https://www.nuget.org/api/v2/package"
-
+        let nugetSource() = NuGet.galleryV3
 
 Target.initEnvironment ()
 
@@ -44,7 +45,7 @@ Target.create "Trace" (fun _ ->
 Target.create "SetVersion" (fun _ ->
     let gitVersion = ScriptVars.version()
     let version = gitVersion.FullSemVer
-    
+
     Trace.logfn "Gitversion is %s" version
 
     AssemblyInfoFile.createCSharp "SharedAssemblyInfo.cs"
@@ -63,13 +64,13 @@ Target.create "SetVersion" (fun _ ->
     let projVersionPath = "/*[local-name()='Project']/*[local-name()='PropertyGroup']/*[local-name()='Version']/text()"
 
     !! "./src/**/*.*proj"
-    |> Seq.iter (fun proj -> 
+    |> Seq.iter (fun proj ->
         version
         |> Xml.poke proj projVersionPath
         )
 
     version
-    |> Xml.poke "./src/Template.nuspec" "/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']/text()"
+    |> Xml.poke "./template/Template.nuspec" "/*[local-name()='package']/*[local-name()='metadata']/*[local-name()='version']/text()"
 )
 
 Target.create "Clean" (fun _ ->
@@ -85,15 +86,23 @@ Target.create "Clean" (fun _ ->
 
 Target.create "Build" (fun _ ->
     !! "src/**/*.*proj"
-    |> Seq.iter (DotNet.build id)
+    |> Seq.iter(
+        DotNet.pack
+          (fun p -> 
+            { p with 
+               Configuration = DotNet.BuildConfiguration.Release
+               OutputPath    = Some ScriptVars.artifacts
+            }
+          )
+        )
 )
 
 Target.create "All" ignore
 
 "Clean"
-//   ==> "Trace"
+  ==> "Trace"
   ==> "SetVersion"
-  //==> "Build"
+  ==> "Build"
   ==> "All"
 
 Target.runOrDefault "All"
