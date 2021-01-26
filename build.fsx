@@ -125,7 +125,7 @@ Target.create "Push" (fun _ ->
 
     let setNugetPushParams (defaults:NuGet.NuGetPushParams) =
             { defaults with
-                DisableBuffering = true
+                //DisableBuffering = true
                 ApiKey           = ScriptVars.nugetKey()
                 Source           = Some <| ScriptVars.nugetSource()
 
