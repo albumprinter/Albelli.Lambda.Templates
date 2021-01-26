@@ -5,7 +5,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <LangVersion>8</LangVersion>
-        <RootNamespace>Albelli.LambdaSubscriptionTemplate.Local</RootNamespace>
+        <RootNamespace>Albelli.Templates.Amazon.Sns.Local</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,7 +24,6 @@
         <PackageReference Include="JetBrains.Annotations" Version="2020.3.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <ProjectReference Include="..\Albelli.SNS.Lambda\Albelli.SNS.Lambda.csproj" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,6 +38,9 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <!-- todo: nuget -->
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Albelli.Templates.Amazon.Sns.Lambda\Albelli.Templates.Amazon.Sns.Lambda.csproj" />
     </ItemGroup>
 
 </Project>

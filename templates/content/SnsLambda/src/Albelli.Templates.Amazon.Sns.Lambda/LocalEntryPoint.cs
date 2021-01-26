@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Albelli.SNS.Lambda
+namespace Albelli.Templates.Amazon.Sns.Lambda
 {
     /// <summary>
     /// Use this to test your logic. For testing whole pipeline have a look at Local.LocalEntryPoint

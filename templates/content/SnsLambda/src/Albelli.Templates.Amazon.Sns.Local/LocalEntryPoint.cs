@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Albelli.SNS.Lambda;
+using Albelli.Templates.Amazon.Sns.Lambda;
 using Amazon.Lambda.SNSEvents;
 using EMG.Lambda.LocalRunner;
 using JetBrains.Annotations;
 
-namespace Albelli.LambdaSubscriptionTemplate.Local
+namespace Albelli.Templates.Amazon.Sns.Local
 {
     /// <summary>
     /// Use this to test whole lambda execution pipeline. For logic testing have a look at Lambda.LocalEntryPoint

@@ -3,9 +3,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <RootNamespace>Albelli.SNS.Lambda</RootNamespace>
     <LangVersion>8</LangVersion>
     <AWSProjectType>Lambda</AWSProjectType>
+    <RootNamespace>Albelli.Templates.Amazon.Sns.Lambda</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Albelli.SNS.Lambda
+namespace Albelli.Templates.Amazon.Sns.Lambda
 {
     [PublicAPI]
     public class Startup
@@ -23,7 +23,7 @@ namespace Albelli.SNS.Lambda
 
             services.AddSwaggerGen()
                 .AddOptions<SwaggerGenOptions>()
-                .Configure(options => { options.SwaggerDoc("v1", new OpenApiInfo {Title = "Albelli.SNS.Lambda HTTP API", Version = "v1"}); });
+                .Configure(options => { options.SwaggerDoc("v1", new OpenApiInfo {Title = "Albelli.Templates.Amazon.Sns.Lambda HTTP API", Version = "v1"}); });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -36,7 +36,7 @@ namespace Albelli.SNS.Lambda
             app.UseSwagger();
             app.UseRouting();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Albelli.SNS.Lambda HTTP API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Albelli.Templates.Amazon.Sns.Lambda HTTP API"); });
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);

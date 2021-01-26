@@ -1,4 +1,4 @@
-﻿namespace Albelli.SNS.Lambda.Notifications
+﻿namespace Albelli.Templates.Amazon.Sns.Lambda.Notifications
 {
     public class NotificationDto
     {

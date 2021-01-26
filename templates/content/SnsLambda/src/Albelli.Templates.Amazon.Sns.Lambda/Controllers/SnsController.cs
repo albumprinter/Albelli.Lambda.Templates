@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Albelli.SNS.Lambda.Notifications;
+using Albelli.Templates.Amazon.Sns.Lambda.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Albelli.SNS.Lambda.Controllers
+namespace Albelli.Templates.Amazon.Sns.Lambda.Controllers
 {
     [Route("api/[controller]")]
     public sealed class SnsController : Controller
