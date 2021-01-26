@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Albelli.Lambda.Templates.Core.Executors;
+using Albelli.Templates.Amazon.Core.Executors;
 using Amazon.Lambda.Core;
 using JetBrains.Annotations;
 
-namespace Albelli.Lambda.Templates.Core.Handlers
+namespace Albelli.Templates.Amazon.Core.Handlers
 {
     public abstract class CollectionInputFunction<TEntity, TCollection, TItem, TStartup> : SingleItemFunction<TEntity, TItem, TStartup>
         where TStartup : class

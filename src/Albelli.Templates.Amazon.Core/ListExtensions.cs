@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Albelli.Lambda.Templates.Core
+namespace Albelli.Templates.Amazon.Core
 {
     public static class ListExtensions
     {

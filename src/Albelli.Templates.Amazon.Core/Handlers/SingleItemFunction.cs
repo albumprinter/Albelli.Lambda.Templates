@@ -5,8 +5,8 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Albelli.Lambda.Templates.Core.Pipelines;
-using Albelli.Lambda.Templates.Core.Routing;
+using Albelli.Templates.Amazon.Core.Pipelines;
+using Albelli.Templates.Amazon.Core.Routing;
 using Amazon.Lambda.AspNetCoreServer;
 using Amazon.Lambda.AspNetCoreServer.Internal;
 using Amazon.Lambda.Core;
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Albelli.Lambda.Templates.Core.Handlers
+namespace Albelli.Templates.Amazon.Core.Handlers
 {
     public abstract class SingleItemFunction<TEntity, TItem, TStartup> : PipelinedAspNetCoreFunction<TItem, StatusProxyResponse>
         where TStartup : class

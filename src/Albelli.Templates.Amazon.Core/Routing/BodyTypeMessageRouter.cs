@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Albelli.Lambda.Templates.Core.Routing
+namespace Albelli.Templates.Amazon.Core.Routing
 {
     /// <summary>
     /// Finds action which has parameter of mapped type with [FromBody] attribute

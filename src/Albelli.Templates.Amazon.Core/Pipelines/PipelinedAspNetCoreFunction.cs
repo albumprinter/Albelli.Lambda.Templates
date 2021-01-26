@@ -5,7 +5,7 @@ using Amazon.Lambda.Core;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http.Features;
 
-namespace Albelli.Lambda.Templates.Core.Pipelines
+namespace Albelli.Templates.Amazon.Core.Pipelines
 {
     [PublicAPI]
     public abstract class PipelinedAspNetCoreFunction<TRequest, TResponse> : AbstractAspNetCoreFunction<TRequest, TResponse>

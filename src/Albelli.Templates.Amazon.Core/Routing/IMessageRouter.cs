@@ -1,4 +1,4 @@
-﻿namespace Albelli.Lambda.Templates.Core.Routing
+﻿namespace Albelli.Templates.Amazon.Core.Routing
 {
     public interface IMessageRouter
     {

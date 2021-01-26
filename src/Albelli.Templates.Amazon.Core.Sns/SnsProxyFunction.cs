@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
-using Albelli.Lambda.Templates.Core.Handlers;
+using Albelli.Templates.Amazon.Core.Handlers;
 using Amazon.Lambda.SNSEvents;
+using JetBrains.Annotations;
 
-namespace Albelli.Lambda.Templates.Sns
+namespace Albelli.Templates.Amazon.Core.Sns
 {
+    [PublicAPI]
     public class SnsProxyFunction<TEntity, TStartup> : CollectionInputFunction<TEntity, SNSEvent, SNSEvent.SNSRecord, TStartup> where TStartup : class
     {
         protected override IEnumerable<SNSEvent.SNSRecord> GetItems(SNSEvent collection) => collection.Records;

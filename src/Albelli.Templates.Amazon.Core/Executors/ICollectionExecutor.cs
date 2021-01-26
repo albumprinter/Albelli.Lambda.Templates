@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Albelli.Lambda.Templates.Core.Executors
+namespace Albelli.Templates.Amazon.Core.Executors
 {
     public interface ICollectionExecutor
     {

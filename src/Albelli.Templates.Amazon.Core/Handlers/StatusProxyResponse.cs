@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Albelli.Lambda.Templates.Core.Handlers
+namespace Albelli.Templates.Amazon.Core.Handlers
 {
     public class StatusProxyResponse
     {

@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageId>Albelli.Lambda.Templates.Sns</PackageId>
-    <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp;sns</PackageTags>
-    <Description>Extension to Albelli.Lambda.Templates.Core to better support AWS Lambda functions that respond to SNS messages.</Description>
-    <AssemblyName>Albelli.Lambda.Templates.Sns</AssemblyName>
-    <RootNamespace>Albelli.Lambda.Templates.Sns</RootNamespace>
+    <PackageId>Albelli.Templates.Amazon.Core.Sqs</PackageId>
+    <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp;sqs</PackageTags>
+    <Description>Extension to Albelli.Templates.Amazon.Core to better support AWS Lambda functions that respond to SQS messages.</Description>
+    <AssemblyName>Albelli.Templates.Amazon.Core.Sqs</AssemblyName>
+    <RootNamespace>Albelli.Templates.Amazon.Core.Sqs</RootNamespace>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -30,11 +30,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Amazon.Lambda.SNSEvents" Version="[1.1.0,2)" />
+    <PackageReference Include="Amazon.Lambda.SQSEvents" Version="[1.1.0,2)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Albelli.Lambda.Templates.Core\Albelli.Lambda.Templates.Core.csproj" />
+    <ProjectReference Include="..\Albelli.Templates.Amazon.Core\Albelli.Templates.Amazon.Core.csproj" />
   </ItemGroup>
 
 </Project>

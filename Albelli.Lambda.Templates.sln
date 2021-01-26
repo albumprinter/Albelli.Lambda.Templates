@@ -19,11 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{236C0B9D-A334-49E7-AA61-568558C9549E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Lambda.Templates.Core", "src\Albelli.Lambda.Templates.Core\Albelli.Lambda.Templates.Core.csproj", "{E2D1EE58-6D66-41AE-A8D3-A1510F2C9EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Templates.Amazon.Core", "src\Albelli.Templates.Amazon.Core\Albelli.Templates.Amazon.Core.csproj", "{E2D1EE58-6D66-41AE-A8D3-A1510F2C9EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Lambda.Templates.Sns", "src\Albelli.Lambda.Templates.Sns\Albelli.Lambda.Templates.Sns.csproj", "{91C9A5AA-51A3-481D-AB69-EA77BD1ACDBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Templates.Amazon.Core.Sns", "src\Albelli.Templates.Amazon.Core.Sns\Albelli.Templates.Amazon.Core.Sns.csproj", "{91C9A5AA-51A3-481D-AB69-EA77BD1ACDBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Lambda.Templates.Sqs", "src\Albelli.Lambda.Templates.Sqs\Albelli.Lambda.Templates.Sqs.csproj", "{9D94AADF-F7BD-4163-B590-BBA96950742B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Templates.Amazon.Core.Sqs", "src\Albelli.Templates.Amazon.Core.Sqs\Albelli.Templates.Amazon.Core.Sqs.csproj", "{9D94AADF-F7BD-4163-B590-BBA96950742B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

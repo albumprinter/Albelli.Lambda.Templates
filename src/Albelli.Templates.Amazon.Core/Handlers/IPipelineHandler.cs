@@ -1,6 +1,6 @@
 ﻿using Amazon.Lambda.Core;
 
-namespace Albelli.Lambda.Templates.Core.Handlers
+namespace Albelli.Templates.Amazon.Core.Handlers
 {
     public interface IPipelineHandler<in TItem>
     {

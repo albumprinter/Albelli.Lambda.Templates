@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageId>Albelli.Lambda.Templates.Core</PackageId>
-    <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp</PackageTags>
-    <Description>A structured template to create AWS Lambda in C#. It supports ASP.NET Core project pipeline, but can handle any AWS lambda input</Description>
-    <AssemblyName>Albelli.Lambda.Templates.Core</AssemblyName>
-    <RootNamespace>Albelli.Lambda.Templates.Core</RootNamespace>
+    <PackageId>Albelli.Templates.Amazon.Core.Sns</PackageId>
+    <PackageTags>aws-lambda-csharp;dotnet-core;aws-lambda;aws;lambda;csharp;sns</PackageTags>
+    <Description>Extension to Albelli.Lambda.Templates.Core to better support AWS Lambda functions that respond to SNS messages.</Description>
+    <AssemblyName>Albelli.Templates.Amazon.Core.Sns</AssemblyName>
+    <RootNamespace>Albelli.Templates.Amazon.Core.Sns</RootNamespace>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -25,11 +25,16 @@
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.1.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.2.0" />
+    <PackageReference Include="Amazon.Lambda.SNSEvents" Version="[1.1.0,2)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Albelli.Templates.Amazon.Core\Albelli.Templates.Amazon.Core.csproj" />
   </ItemGroup>
 
 </Project>
