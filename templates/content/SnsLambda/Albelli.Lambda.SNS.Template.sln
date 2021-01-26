@@ -8,9 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		src\CommonAssemblyInfo.cs = src\CommonAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.LambdaSubscriptionTemplate.Lambda", "src\Albelli.LambdaSubscriptionTemplate.Lambda\Albelli.LambdaSubscriptionTemplate.Lambda.csproj", "{509E4FE9-6FA2-46A5-85CF-32D139844252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.SNS.Lambda", "src\Albelli.SNS.Lambda\Albelli.SNS.Lambda.csproj", "{509E4FE9-6FA2-46A5-85CF-32D139844252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.LambdaSubscriptionTemplate.Local", "src\Albelli.LambdaSubscriptionTemplate.Local\Albelli.LambdaSubscriptionTemplate.Local.csproj", "{CBFE08AC-E815-414C-B0C3-D6B3C2BDA073}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.SNS.Local", "src\Albelli.SNS.Local\Albelli.SNS.Local.csproj", "{CBFE08AC-E815-414C-B0C3-D6B3C2BDA073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
