@@ -1,4 +1,4 @@
-# Albelli.Lambda.Templates
+# Albelli.Templates.Amazon
 
 
 <a href="https://ci.appveyor.com/project/albumprinter/albelli-templates-amazon/branch/master"><img src="https://ci.appveyor.com/api/projects/status/bunen2a3k2rlt7dp?svg=true" />
