@@ -76,8 +76,12 @@ Target.create "SetVersion" (fun _ ->
 
     !! "./templates/content/**/*.*proj"
     |> Seq.iter (fun proj ->
+      try
+
         version
         |> Xml.poke proj localDepPath
+      with
+        e -> Trace.log e.Message
         )
 
 )
