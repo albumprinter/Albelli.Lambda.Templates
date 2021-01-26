@@ -63,6 +63,7 @@ Target.create "SetVersion" (fun _ ->
 
     let projVersionPath = "/*[local-name()='Project']/*[local-name()='PropertyGroup']/*[local-name()='Version']/text()"
 
+    let version = gitVersion.NuGetVersionV2
     !! "./src/**/*.*proj"
     |> Seq.iter (fun proj ->
         version
