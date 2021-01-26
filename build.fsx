@@ -73,6 +73,11 @@ Target.create "SetVersion" (fun _ ->
     |> Xml.poke "./templates/templates.csproj" projVersionPath
 )
 
+Target.create "Restore" (fun _ ->
+    !! "src/**/*.*proj"
+    |> Seq.iter( DotNet.restore id )
+)
+
 Target.create "Clean" (fun _ ->
     !! ScriptVars.artifacts
     ++ "src/*/bin"
@@ -97,7 +102,7 @@ Target.create "Build" (fun _ ->
         )
 
 
-    !! "src/*.*proj"
+    !! "templates/*.*proj"
     |> Seq.iter(
         DotNet.pack
           (fun p -> 
@@ -134,6 +139,7 @@ Target.create "Push" (fun _ ->
 "Clean"
   ==> "Trace"
   ==> "SetVersion"
+  ==> "Restore"
   ==> "Build"
   ==> "Push"
 
