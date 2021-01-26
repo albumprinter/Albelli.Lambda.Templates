@@ -20,13 +20,13 @@ namespace Albelli.Templates.Amazon.Core.Executors
             var tasks = new List<Task>();
             foreach(var item in collection)
             {
-                await concurrencySemaphore.WaitAsync();
+                await concurrencySemaphore.WaitAsync().ConfigureAwait(false);
 
                 var task = Task.Factory.StartNew(async () =>
                 {
                     try
                     {
-                        await itemExecutor(item);
+                        await itemExecutor(item).ConfigureAwait(false);
                     }
                     finally
                     {
@@ -38,7 +38,7 @@ namespace Albelli.Templates.Amazon.Core.Executors
                 tasks.Add(task);
             }
 
-            await Task.WhenAll(tasks.ToArray());
+            await Task.WhenAll(tasks.ToArray()).ConfigureAwait(false);
         }
     }
 }

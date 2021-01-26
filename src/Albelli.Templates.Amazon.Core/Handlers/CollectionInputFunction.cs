@@ -14,7 +14,7 @@ namespace Albelli.Templates.Amazon.Core.Handlers
         [UsedImplicitly]
         public async Task FunctionHandlerAsync(TCollection collection, ILambdaContext lambdaContext)
         {
-            await SnsEventExecutor.Execute(GetItems(collection), item => FunctionHandlerAsync(item, lambdaContext));
+            await SnsEventExecutor.Execute(GetItems(collection), item => FunctionHandlerAsync(item, lambdaContext)).ConfigureAwait(false);
         }
 
         public ICollectionExecutor SnsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();

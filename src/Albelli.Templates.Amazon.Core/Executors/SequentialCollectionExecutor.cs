@@ -10,7 +10,7 @@ namespace Albelli.Templates.Amazon.Core.Executors
         {
             foreach (var item in collection)
             {
-                await itemExecutor(item);
+                await itemExecutor(item).ConfigureAwait(false);
             }
         }
     }
