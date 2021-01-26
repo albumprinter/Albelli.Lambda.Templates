@@ -77,7 +77,7 @@ Target.create "Restore" (fun _ ->
     !! "src/**/*.*proj"
     |> Seq.iter( DotNet.restore id )
 
-    !! "templates/.*proj"
+    !! "templates/*.*proj"
     |> Seq.iter( DotNet.restore id )
 )
 
