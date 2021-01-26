@@ -71,6 +71,15 @@ Target.create "SetVersion" (fun _ ->
 
     version
     |> Xml.poke "./templates/templates.csproj" projVersionPath
+
+    let localDepPath = "/*[local-name()='Project']/*[local-name()='ItemGroup']/*[local-name()='PackageReference' and contains(@Include, 'Albelli.Templates.Amazon.Core')]/@Version"
+
+    !! "./templates/content/**/*.*proj"
+    |> Seq.iter (fun proj ->
+        version
+        |> Xml.poke proj localDepPath
+        )
+
 )
 
 Target.create "Restore" (fun _ ->
