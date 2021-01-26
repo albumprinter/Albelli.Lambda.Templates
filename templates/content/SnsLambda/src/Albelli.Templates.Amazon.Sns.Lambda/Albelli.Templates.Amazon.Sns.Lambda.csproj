@@ -32,6 +32,6 @@
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <!-- todo: nuget -->
+    <PackageReference Include="Albelli.Templates.Amazon.Core.Sns" Version="0.1.1-b.15" />
   </ItemGroup>
 </Project>
