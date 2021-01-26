@@ -34,7 +34,7 @@ open Albelli
 
         let nugetKey() = "NUGET_API_KEY" |> Environment.environVarOrNone
 
-        let nugetSource() = NuGet.galleryV2
+        let nugetSource() = NuGet.galleryV3
 
 Target.initEnvironment ()
 
@@ -75,6 +75,9 @@ Target.create "SetVersion" (fun _ ->
 
 Target.create "Restore" (fun _ ->
     !! "src/**/*.*proj"
+    |> Seq.iter( DotNet.restore id )
+
+    !! "templates/.*proj"
     |> Seq.iter( DotNet.restore id )
 )
 
