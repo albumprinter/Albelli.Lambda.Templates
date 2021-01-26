@@ -2,10 +2,10 @@
   "author": "Albelli",
   "classifications": [ "SNS", "Lambda", "Core" ],
   "name": "Lambda that's subscribed to SNS topic",
-  "identity": "Albelli.Templates.Amazon.Lambda.SNSEvents",
-  "shortName": "albelli-amazon-lambda-sns-events",
+  "identity": "Albelli.Templates.Amazon.SNS",
+  "shortName": "albelli-amazon-sns",
   "guids": [ "509E4FE9-6FA2-46A5-85CF-32D139844252", "A69BD9A0-857C-4946-826E-55EB1B07D3A4" ],
-  "sourceName": "Albelli.LambdaSubscriptionTemplate",
+  "sourceName": "Albelli.Templates.Amazon",
   "tags": {
     "language": "C#"
   },
