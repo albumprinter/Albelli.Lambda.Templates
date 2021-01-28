@@ -93,13 +93,13 @@ namespace Albelli.Templates.Amazon.Core.Handlers
         [UsedImplicitly]
         public new virtual async Task FunctionHandlerAsync(TItem item, ILambdaContext lambdaContext)
         {
-            SnsRecordPipelineHandlers.Foreach(handler => handler.HookBefore(item, lambdaContext));
+            SingleItemPipelineHandlers.Foreach(handler => handler.HookBefore(item, lambdaContext));
             var response = await base.FunctionHandlerAsync(item, lambdaContext).ConfigureAwait(false);
-            SnsRecordPipelineHandlers.ForeachReverse(handler => handler.HookAfter(item, lambdaContext));
+            SingleItemPipelineHandlers.ForeachReverse(handler => handler.HookAfter(item, lambdaContext));
 
             lambdaContext.Logger.Log($"{typeof(TItem)} handled with status: {response.StatusCode}");
         }
 
-        public List<IPipelineHandler<TItem>> SnsRecordPipelineHandlers { get; } = new List<IPipelineHandler<TItem>>();
+        public List<IPipelineHandler<TItem>> SingleItemPipelineHandlers { get; } = new List<IPipelineHandler<TItem>>();
     }
 }

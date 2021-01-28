@@ -14,19 +14,19 @@ namespace Albelli.Templates.Amazon.Core.Handlers
         [UsedImplicitly]
         public async Task FunctionHandlerAsync(TCollection collection, ILambdaContext lambdaContext)
         {
-            await SnsEventExecutor.Execute(GetItems(collection), item => FunctionHandlerAsync(item, lambdaContext)).ConfigureAwait(false);
+            await CollectionExecutor.Execute(GetItems(collection), item => FunctionHandlerAsync(item, lambdaContext)).ConfigureAwait(false);
         }
 
-        public ICollectionExecutor SnsEventExecutor { get; protected set; } = new SequentialCollectionExecutor();
+        public ICollectionExecutor CollectionExecutor { get; protected set; } = new SequentialCollectionExecutor();
 
         public void ChooseSequentialExecutionMode()
         {
-            SnsEventExecutor = new SequentialCollectionExecutor();
+            CollectionExecutor = new SequentialCollectionExecutor();
         }
 
         public void ChooseConcurrentExecutionMode(int batchSize)
         {
-            SnsEventExecutor = new ConcurrentCollectionExecutor(batchSize);
+            CollectionExecutor = new ConcurrentCollectionExecutor(batchSize);
         }
     }
 }
