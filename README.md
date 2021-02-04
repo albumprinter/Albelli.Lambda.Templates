@@ -10,7 +10,7 @@ This solution helps to handle SNS/SQS (and any generic input) through ASP.NET Co
 
 ## Core
 
-Templates based on core libraries. The main mechanics and explanation how it works you can find [in article](https://github.com/albumprinter/Albelli.Templates.Amazon/wiki/How-it-works).
+The templates are based on core libraries. The main mechanics and the explanation of how it works can be found in [the article](https://github.com/albumprinter/Albelli.Templates.Amazon/wiki/How-it-works).
 
 ## How to install templates
 
