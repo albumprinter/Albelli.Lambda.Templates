@@ -25,4 +25,4 @@ albelli-amazon-sns
 albelli-amazon-sqs
 ```
 
-Then, for example, you can just simply execute `dotnet new albelli-amazon-sns` command to create a solution for SNS consuming.
+Then, for example, you can just simply execute `dotnet new albelli-amazon-sns` command to create a solution to handle SNS messages.
