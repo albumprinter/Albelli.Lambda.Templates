@@ -6,7 +6,7 @@
 
 ## Overview
 
-This solution helps to handle SNS/SQS (and any generic input) through ASP.NET Core pipeline. It allows using the Startup file, Middlewares, and other features that you have in the real WebAPI application. This solution also provides several dotnet templates with useful boilerplate code.
+This solution helps to handle SNS/SQS messages (and any generic input) through the ASP.NET Core pipeline. It allows using the Startup file, Middlewares, and other features that you have in the real WebAPI application. This solution also provides several dotnet templates with some useful boilerplate code.
 
 ## Core
 
