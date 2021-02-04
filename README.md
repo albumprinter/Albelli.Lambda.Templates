@@ -14,7 +14,7 @@ The templates are based on core libraries. The main mechanics and the explanatio
 
 ## How to install templates
 
-Type next command to install the templates on your machine:
+Type the following command to install the templates on your machine:
 ```
 dotnet new -u Albelli.Templates.Amazon && dotnet new -i Albelli.Templates.Amazon
 ```
