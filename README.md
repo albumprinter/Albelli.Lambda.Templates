@@ -19,7 +19,7 @@ Type the following command to install the templates on your machine:
 dotnet new -u Albelli.Templates.Amazon && dotnet new -i Albelli.Templates.Amazon
 ```
 
-If you type `dotnet new` without any additional params again, you'll see next templates:
+If you type `dotnet new` without any additional params again, you'll see the following new templates available:
 ```
 albelli-amazon-sns
 albelli-amazon-sqs
