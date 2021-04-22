@@ -37,6 +37,11 @@ namespace Albelli.Templates.Amazon.Core.Handlers
 
         protected abstract string GetEntityJson(TItem item);
 
+        /// <summary>
+        /// If you have inheritance with TEntity type and want to handle descendants, you could describe type choosing logic in this method
+        /// </summary>
+        protected virtual Type GetEntityType(TItem item) => typeof(TEntity);
+
         protected void ConfigureMessageRouter<TMessageRouter>()
         where TMessageRouter : class, IMessageRouter
         {
@@ -61,7 +66,7 @@ namespace Albelli.Templates.Amazon.Core.Handlers
             requestFeatures.Method = "POST";
 
             var messageRouter = _serviceProvider.GetService<IMessageRouter>();
-            var path = $"/{messageRouter.GetPath<TEntity>().Trim('/')}/";
+            var path = $"/{messageRouter.GetPath(GetEntityType(item)).Trim('/')}/";
 
             requestFeatures.Path = path;
             requestFeatures.PathBase = string.Empty;
