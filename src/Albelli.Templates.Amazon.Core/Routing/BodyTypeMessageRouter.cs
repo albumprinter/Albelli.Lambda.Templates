@@ -33,9 +33,8 @@ namespace Albelli.Templates.Amazon.Core.Routing
             return this;
         }
 
-        public string GetPath<TEntity>()
+        public string GetPath(Type type)
         {
-            var type = typeof(TEntity);
             if (_entityToPathCustomMap.ContainsKey(type))
             {
                 return _entityToPathCustomMap[type];

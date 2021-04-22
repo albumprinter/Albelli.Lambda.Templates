@@ -18,7 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    <PackageReference Include="Albelli.Templates.Amazon.Core.Sqs" Version="0.2.1-b0001" />
+    <PackageReference Include="Albelli.Templates.Amazon.Core.Sqs" Version="0.3.1" />
   </ItemGroup>
   
 </Project>
