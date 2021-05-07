@@ -103,6 +103,13 @@ namespace Albelli.Templates.Amazon.Core.Handlers
             SingleItemPipelineHandlers.ForeachReverse(handler => handler.HookAfter(item, lambdaContext));
 
             lambdaContext.Logger.Log($"{typeof(TItem)} handled with status: {response.StatusCode}");
+            var statusCode = (int)response.StatusCode;
+            if (statusCode >= 200 && statusCode <= 299)
+            {
+                return;
+            }
+
+            throw new LambdaHandlingException($"{typeof(TItem)} handling failed with StatusCode {statusCode}");
         }
 
         public List<IPipelineHandler<TItem>> SingleItemPipelineHandlers { get; } = new List<IPipelineHandler<TItem>>();
