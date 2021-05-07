@@ -1,6 +1,6 @@
 image: Visual Studio 2019
 build_script:
-  - ps: .\build.ps1 -Target Push
+  - cmd: build.cmd -t Push
 test: off
 skip_branch_with_pr: true
 nuget:
